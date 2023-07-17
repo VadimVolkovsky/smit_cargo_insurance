@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - db_volume:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env
+    container_name: cargo_insurance_db
+
+
+  backend:
+    build: .
+    command: bash -c "aerich init -t app.core.db.DATABASE_CONFIG && aerich init-db && uvicorn app.main:app --host 0.0.0.0 --port 80"
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+    container_name: cargo_insurance_backend
+
+
+volumes:
+  db_volume:
