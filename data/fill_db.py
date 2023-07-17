@@ -3,7 +3,8 @@ import json
 
 import aiohttp
 
-URL = "http://127.0.0.1/create_rate"  # docker
+
+URL = "http://backend/create_rate"  # docker
 HEADERS = {'content-type': 'application/json'}
 payload = []
 
