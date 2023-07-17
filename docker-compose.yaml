@@ -24,6 +24,15 @@ services:
       - ./.env
     container_name: cargo_insurance_backend
 
+  fill_db:
+    build: ./data
+    depends_on:
+      - backend
+    command: bash -c "python fill_db.py"
+    container_name: cargo_insurance_fill_db
+
+    
+
 
 volumes:
   db_volume:
