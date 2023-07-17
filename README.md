@@ -107,6 +107,6 @@ app/logs/
   
 - Python 3.11
 - FastAPI
-- Tortoise
+- Tortoise ORM
 - aerich
 </details>
